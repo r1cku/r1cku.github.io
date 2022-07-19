@@ -1,0 +1,445 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="10 Exploratory Data Analysis in Python" /><meta name="author" content="RvDW" /><meta property="og:locale" content="en" /><meta name="description" content="How do we get from data to answers? Exploratory data analysis is a process for exploring datasets, answering questions, and visualizing results. This course presents the tools you need to clean and validate data, to visualize distributions and relationships between variables, and to use regression models to predict and explain. You’ll explore data related to demographics and health, including the National Survey of Family Growth and the General Social Survey. But the methods you learn apply to all areas of science, engineering, and business. You’ll use Pandas, a powerful library for working with data, and other core Python libraries including NumPy and SciPy, StatsModels for regression, and Matplotlib for visualization. With these tools and skills, you will be prepared to work with real data, make discoveries, and present compelling results." /><meta property="og:description" content="How do we get from data to answers? Exploratory data analysis is a process for exploring datasets, answering questions, and visualizing results. This course presents the tools you need to clean and validate data, to visualize distributions and relationships between variables, and to use regression models to predict and explain. You’ll explore data related to demographics and health, including the National Survey of Family Growth and the General Social Survey. But the methods you learn apply to all areas of science, engineering, and business. You’ll use Pandas, a powerful library for working with data, and other core Python libraries including NumPy and SciPy, StatsModels for regression, and Matplotlib for visualization. With these tools and skills, you will be prepared to work with real data, make discoveries, and present compelling results." /><link rel="canonical" href="https://r1cku.github.io/posts/Exploratory-Data-Analysis-in-Python/" /><meta property="og:url" content="https://r1cku.github.io/posts/Exploratory-Data-Analysis-in-Python/" /><meta property="og:site_name" content="Richard’s Chirpy" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-07-15T06:44:00+02:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="10 Exploratory Data Analysis in Python" /><meta name="twitter:site" content="@twitter_username" /><meta name="twitter:creator" content="@RvDW" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"RvDW"},"dateModified":"2022-07-15T06:44:00+02:00","datePublished":"2022-07-15T06:44:00+02:00","description":"How do we get from data to answers? Exploratory data analysis is a process for exploring datasets, answering questions, and visualizing results. This course presents the tools you need to clean and validate data, to visualize distributions and relationships between variables, and to use regression models to predict and explain. You’ll explore data related to demographics and health, including the National Survey of Family Growth and the General Social Survey. But the methods you learn apply to all areas of science, engineering, and business. You’ll use Pandas, a powerful library for working with data, and other core Python libraries including NumPy and SciPy, StatsModels for regression, and Matplotlib for visualization. With these tools and skills, you will be prepared to work with real data, make discoveries, and present compelling results.","headline":"10 Exploratory Data Analysis in Python","mainEntityOfPage":{"@type":"WebPage","@id":"https://r1cku.github.io/posts/Exploratory-Data-Analysis-in-Python/"},"url":"https://r1cku.github.io/posts/Exploratory-Data-Analysis-in-Python/"}</script><title>10 Exploratory Data Analysis in Python | Richard's Chirpy</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="Richard's Chirpy"><meta name="application-name" content="Richard's Chirpy"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get MODE_ATTR() { return "data-mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } static get ID() { return "mode-toggle"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } let self = this; /* always follow the system prefers */ this.sysDarkPrefers.addEventListener("change", () => { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.notify(); }); } /* constructor() */ get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; } get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } setDark() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_ATTR); sessionStorage.removeItem(ModeToggle.MODE_KEY); } /* Notify another plugins that the theme mode has changed */ notify() { window.postMessage({ direction: ModeToggle.ID, message: this.modeStatus }, "*"); } } /* ModeToggle */ const toggle = new ModeToggle(); function flipMode() { if (toggle.hasMode) { if (toggle.isSysDarkPrefer) { if (toggle.isLightMode) { toggle.clearMode(); } else { toggle.setLight(); } } else { if (toggle.isDarkMode) { toggle.clearMode(); } else { toggle.setDark(); } } } else { if (toggle.isSysDarkPrefer) { toggle.setLight(); } else { toggle.setDark(); } } toggle.notify(); } /* flipMode() */ </script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> <img src="/commons/avatar.jpeg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">Richard's Chirpy</a></div><div class="site-subtitle font-italic">A text-focused Jekyll theme</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <button class="mode-toggle btn" aria-label="Switch Mode"> <i class="fas fa-adjust"></i> </button> <span class="icon-border"></span> <a href="https://github.com/github_username" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/twitter_username" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['whalerichard','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper"><div id="topbar" class="container d-flex align-items-center justify-content-between h-100 pl-3 pr-3 pl-md-4 pr-md-4"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>10 Exploratory Data Analysis in Python</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper" class="d-flex justify-content-center"><div id="main" class="container pl-xl-4 pr-xl-4"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-9 pr-xl-4"><div class="post pl-1 pr-1 pl-md-2 pr-md-2"><h1 data-toc-skip>10 Exploratory Data Analysis in Python</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1657860240" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jul 15, 2022 </em> </span><div class="d-flex justify-content-between"> <span> By <em> Richard von Däniken Whale </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1969 words"> <em>10 min</em> read</span></div></div></div><div class="post-content"><p>How do we get from data to answers? Exploratory data analysis is a process for exploring datasets, answering questions, and visualizing results. This course presents the tools you need to clean and validate data, to visualize distributions and relationships between variables, and to use regression models to predict and explain. You’ll explore data related to demographics and health, including the National Survey of Family Growth and the General Social Survey. But the methods you learn apply to all areas of science, engineering, and business. You’ll use Pandas, a powerful library for working with data, and other core Python libraries including NumPy and SciPy, StatsModels for regression, and Matplotlib for visualization. With these tools and skills, you will be prepared to work with real data, make discoveries, and present compelling results.</p><h1 id="read-clean-and-validate">Read, clean, and validate</h1><p>The first step of almost any data project is to read the data, check for errors and special cases, and prepare data for analysis. This is exactly what you’ll do in this chapter, while working with a dataset obtained from the National Survey of Family Growth.</p><h2 id="dataframes-and-series"><span class="mr-2">DataFrames and Series</span><a href="#dataframes-and-series" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="c1"># Display the number of rows and columns
+</span><span class="n">df</span><span class="p">.</span><span class="n">shape</span>
+
+<span class="c1"># Display the names of the columns
+</span><span class="n">df</span><span class="p">.</span><span class="n">columns</span>
+
+<span class="c1"># Select column col_1: series_1
+</span><span class="n">series_1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'col_1'</span><span class="p">]</span>
+
+<span class="c1"># Print the first 5 elements of series_1
+</span><span class="k">print</span><span class="p">(</span><span class="n">series_1</span><span class="p">.</span><span class="n">head</span><span class="p">())</span>
+
+</pre></table></code></div></div><h2 id="validate-a-variable"><span class="mr-2">Validate a variable</span><a href="#validate-a-variable" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="c1"># Return a Series containing counts of unique values
+</span><span class="n">df</span><span class="p">[</span><span class="s">'col_1'</span><span class="p">].</span><span class="n">value_counts</span><span class="p">()</span>
+
+</pre></table></code></div></div><h2 id="clean-a-variable"><span class="mr-2">Clean a variable</span><a href="#clean-a-variable" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="c1"># Replace the value 8 with NaN
+</span><span class="n">df</span><span class="p">[</span><span class="s">'col_1'</span><span class="p">].</span><span class="n">replace</span><span class="p">([</span><span class="mi">8</span><span class="p">],</span> <span class="n">np</span><span class="p">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># Print the values and their frequencies
+</span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'col_1'</span><span class="p">].</span><span class="n">value_counts</span><span class="p">())</span>
+
+</pre></table></code></div></div><h2 id="compute-a-variable"><span class="mr-2">Compute a variable</span><a href="#compute-a-variable" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="c1"># Select the columns and divide by 100
+</span><span class="n">ageconception</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'ageconception'</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span>
+<span class="n">agepregnant</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'agepregnant'</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span>
+
+<span class="c1"># Compute the difference
+</span><span class="n">preg_length</span> <span class="o">=</span> <span class="n">agepregnant</span> <span class="o">-</span> <span class="n">ageconception</span>
+
+<span class="c1"># Compute summary statistics
+</span><span class="k">print</span><span class="p">(</span><span class="n">preg_length</span><span class="p">.</span><span class="n">describe</span><span class="p">())</span>
+
+</pre></table></code></div></div><h2 id="make-a-histogram"><span class="mr-2">Make a histogram</span><a href="#make-a-histogram" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="c1"># Plot the histogram
+</span><span class="n">plt</span><span class="p">.</span><span class="n">hist</span><span class="p">(</span><span class="n">series_1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">'step'</span><span class="p">)</span>
+
+<span class="c1"># Label the axes
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'xlabel'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'ylabel'</span><span class="p">)</span>
+
+<span class="c1"># Show the figure
+</span><span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></table></code></div></div><h2 id="compute-birth-weight"><span class="mr-2">Compute birth weight</span><a href="#compute-birth-weight" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="c1"># Create a Boolean Series for col_1
+</span><span class="n">series_1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'col_1'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">37</span>
+
+<span class="c1"># Select the series_2 of series_1
+</span><span class="n">series_3</span> <span class="o">=</span> <span class="n">series_2</span><span class="p">[</span><span class="n">series_1</span><span class="p">]</span>
+
+<span class="c1"># Compute the mean of series_3
+</span><span class="k">print</span><span class="p">(</span><span class="n">series_3</span><span class="p">.</span><span class="n">mean</span><span class="p">())</span>
+
+</pre></table></code></div></div><h2 id="filter"><span class="mr-2">Filter</span><a href="#filter" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="c1"># Filter col_1
+</span><span class="n">series_1</span> <span class="o">=</span> <span class="n">df_1</span><span class="p">[</span><span class="s">'col_1'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">37</span>
+
+<span class="c1"># Filter single births
+</span><span class="n">series_2</span> <span class="o">=</span> <span class="n">df_1</span><span class="p">[</span><span class="s">'col_2'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+
+<span class="c1"># Compute birth weight for single full-term babies
+</span><span class="n">series_3</span> <span class="o">=</span> <span class="n">df_2</span><span class="p">[</span><span class="n">series_1</span> <span class="o">&amp;</span> <span class="n">series_2</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'series_3_mean:'</span><span class="p">,</span> <span class="n">series_3</span><span class="p">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="c1"># Compute birth weight for multiple full-term babies
+</span><span class="n">series_4</span> <span class="o">=</span> <span class="n">df_2</span><span class="p">[</span><span class="n">series_1</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">series_2</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'series_4_mean:'</span><span class="p">,</span> <span class="n">series_4</span><span class="p">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></table></code></div></div><h1 id="distributions">Distributions</h1><p>In the first chapter, having cleaned and validated your data, you began exploring it by using histograms to visualize distributions. In this chapter, you’ll learn how to represent distributions using Probability Mass Functions (PMFs) and Cumulative Distribution Functions (CDFs). You’ll learn when to use each of them, and why, while working with a new dataset obtained from the General Social Survey.</p><h2 id="make-a-probability-mass-function-pmf"><span class="mr-2">Make a Probability mass function (PMF)</span><a href="#make-a-probability-mass-function-pmf" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p><em>PMF</em>, tells us the probability that a discrete random variable takes on a certain value.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="c1"># Compute the PMF for year
+</span><span class="n">pmf_year</span> <span class="o">=</span> <span class="n">Pmf</span><span class="p">(</span><span class="n">gss</span><span class="p">[</span><span class="s">'year'</span><span class="p">],</span> <span class="n">normalize</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c1"># Print the result
+</span><span class="k">print</span><span class="p">(</span><span class="n">pmf_year</span><span class="p">)</span>
+
+</pre></table></code></div></div><h2 id="plot-a-pmf"><span class="mr-2">Plot a PMF</span><a href="#plot-a-pmf" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Now let’s plot a PMF for the age of the respondents in the GSS dataset. The variable <code class="language-plaintext highlighter-rouge">'age'</code> contains respondents’ age in years.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre><span class="c1"># Select the column_1
+</span><span class="n">series_1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'column_1'</span><span class="p">]</span>
+
+<span class="c1"># Make a PMF of series_1
+</span><span class="n">series_2</span> <span class="o">=</span> <span class="n">Pmf</span><span class="p">(</span><span class="n">series_1</span><span class="p">)</span>
+
+<span class="c1"># Plot the PMF
+</span><span class="n">series_2</span><span class="p">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="c1"># Label the axes
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'PMF'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></table></code></div></div><p>![[Pmf_bar_plot.png|300]]</p><h2 id="make-a-cumulative-distribution-function-cdf"><span class="mr-2">Make a Cumulative distribution function (CDF)</span><a href="#make-a-cumulative-distribution-function-cdf" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>In this exercise, you’ll make a <em>CDF</em> and use it to determine the fraction of respondents in the GSS dataset who are OLDER than 30. The GSS dataset has been preloaded for you into a DataFrame called <code class="language-plaintext highlighter-rouge">gss</code>. As with the <code class="language-plaintext highlighter-rouge">Pmf</code> class from the previous lesson, the <code class="language-plaintext highlighter-rouge">Cdf</code> class you just saw in the video has been created for you, and you can access it outside of DataCamp via the <a href="https://pypi.org/project/empiricaldist/"><code class="language-plaintext highlighter-rouge">empiricaldist</code></a> library.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="c1"># Select the column_1
+</span><span class="n">series_1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'column_1'</span><span class="p">]</span>
+
+<span class="c1"># Compute the CDF of series_1
+</span><span class="n">series_2</span> <span class="o">=</span> <span class="n">Cdf</span><span class="p">(</span><span class="n">series_1</span><span class="p">)</span>
+
+<span class="c1"># Calculate the CDF of 30
+</span><span class="k">print</span><span class="p">(</span><span class="n">series_2</span><span class="p">[</span><span class="mi">30</span><span class="p">])</span>
+</pre></table></code></div></div><h2 id="compute-iqr"><span class="mr-2">Compute IQR</span><a href="#compute-iqr" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Recall from the video that the interquartile range (IQR) is the difference between the 75th and 25th percentiles. It is a measure of variability that is robust in the presence of errors or extreme values.</p><p>In this exercise, you’ll compute the interquartile range of income in the GSS dataset. Income is stored in the <code class="language-plaintext highlighter-rouge">'realinc'</code> column, and the CDF of income has already been computed and stored in <code class="language-plaintext highlighter-rouge">cdf_income</code>.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre><span class="c1"># Calculate the 75th percentile 
+</span><span class="n">percentile_75th</span> <span class="o">=</span> <span class="n">cdf_series</span><span class="p">.</span><span class="n">inverse</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+
+<span class="c1"># Calculate the 25th percentile
+</span><span class="n">percentile_25th</span> <span class="o">=</span> <span class="n">cdf_series</span><span class="p">.</span><span class="n">inverse</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="c1"># Calculate the interquartile range
+</span><span class="n">iqr</span> <span class="o">=</span> <span class="n">percentile_75th</span> <span class="o">-</span> <span class="n">percentile_25th</span>
+
+<span class="c1"># Print the interquartile range
+</span><span class="k">print</span><span class="p">(</span><span class="n">iqr</span><span class="p">)</span>
+</pre></table></code></div></div><h2 id="plot-a-cdf"><span class="mr-2">Plot a CDF</span><a href="#plot-a-cdf" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>The distribution of income in almost every country is long-tailed; that is, there are a small number of people with very high incomes. In the GSS dataset, the variable <code class="language-plaintext highlighter-rouge">'realinc'</code> represents total household income, converted to 1986 dollars. We can get a sense of the shape of this distribution by plotting the CDF.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre><span class="c1"># Select column_1
+</span><span class="n">series_1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'column_1'</span><span class="p">]</span>
+
+<span class="c1"># Make the CDF
+</span><span class="n">cdf_series_1</span> <span class="o">=</span> <span class="n">Cdf</span><span class="p">(</span><span class="n">series_1</span><span class="p">)</span>
+
+<span class="c1"># Plot it
+</span><span class="n">cdf_series_1</span><span class="p">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="c1"># Label the axes
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'CDF'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></table></code></div></div><h2 id="plot-income-cdfs"><span class="mr-2">Plot income CDFs</span><a href="#plot-income-cdfs" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Let’s now see what the distribution of income looks like for people with different education levels. You can do this by plotting the CDFs. Recall how Allen plotted the income CDFs of respondents interviewed before and after 1995:</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="n">Cdf</span><span class="p">(</span><span class="n">income</span><span class="p">[</span><span class="n">pre95</span><span class="p">]).</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">'Before 1995'</span><span class="p">)</span>
+<span class="n">Cdf</span><span class="p">(</span><span class="n">income</span><span class="p">[</span><span class="o">~</span><span class="n">pre95</span><span class="p">]).</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">'After 1995'</span><span class="p">)</span>
+</pre></table></code></div></div><p>You can assume that Boolean Series have been defined, as in the previous exercise, to identify respondents with different education levels: <code class="language-plaintext highlighter-rouge">high</code>, <code class="language-plaintext highlighter-rouge">assc</code>, and <code class="language-plaintext highlighter-rouge">bach</code>.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="n">income</span> <span class="o">=</span> <span class="n">gss</span><span class="p">[</span><span class="s">'realinc'</span><span class="p">]</span>
+
+<span class="c1"># Plot the CDFs
+</span><span class="n">Cdf</span><span class="p">(</span><span class="n">income</span><span class="p">[</span><span class="n">high</span><span class="p">]).</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">'High school'</span><span class="p">)</span>
+<span class="n">Cdf</span><span class="p">(</span><span class="n">income</span><span class="p">[</span><span class="n">assc</span><span class="p">]).</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">'Associate'</span><span class="p">)</span>
+<span class="n">Cdf</span><span class="p">(</span><span class="n">income</span><span class="p">[</span><span class="n">bach</span><span class="p">]).</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">'Bachelor'</span><span class="p">)</span>
+
+<span class="c1"># Label the axes
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Income (1986 USD)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'CDF'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></table></code></div></div><p>![[Cdf_plot_income_distribution.png|300]]</p><h2 id="distribution-of-income"><span class="mr-2">Distribution of income</span><a href="#distribution-of-income" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>In many datasets, the distribution of income is approximately lognormal, which means that the logarithms of the incomes fit a normal distribution. We’ll see whether that’s true for the GSS data. As a first step, you’ll compute the mean and standard deviation of the log of incomes using NumPy’s <code class="language-plaintext highlighter-rouge">np.log10()</code> function.</p><p>Then, you’ll use the computed mean and standard deviation to make a <code class="language-plaintext highlighter-rouge">norm</code> object using the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html"><code class="language-plaintext highlighter-rouge">scipy.stats.norm()</code></a> function.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="c1"># Extract realinc and compute its log
+</span><span class="n">income</span> <span class="o">=</span> <span class="n">gss</span><span class="p">[</span><span class="s">'realinc'</span><span class="p">]</span>
+<span class="n">log_income</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log10</span><span class="p">(</span><span class="n">income</span><span class="p">)</span>
+
+<span class="c1"># Compute mean and standard deviation
+</span><span class="n">mean</span> <span class="o">=</span> <span class="n">log_income</span><span class="p">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">log_income</span><span class="p">.</span><span class="n">std</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span>
+
+<span class="c1"># Make a norm object
+</span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span><span class="n">std</span><span class="p">)</span>
+
+</pre></table></code></div></div><h2 id="comparing-cdfs"><span class="mr-2">Comparing CDFs</span><a href="#comparing-cdfs" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>To see whether the distribution of income is well modeled by a lognormal distribution, we’ll compare the CDF of the logarithm of the data to a normal distribution with the same mean and standard deviation. These variables from the previous exercise are available for use!</p><p><code class="language-plaintext highlighter-rouge">dist</code> is a <code class="language-plaintext highlighter-rouge">scipy.stats.norm</code> object with the same mean and standard deviation as the data. It provides <code class="language-plaintext highlighter-rouge">.cdf()</code>, which evaluates the normal cumulative distribution function.</p><p>Be careful with capitalization: <code class="language-plaintext highlighter-rouge">Cdf()</code>, with an uppercase <code class="language-plaintext highlighter-rouge">C</code>, creates <code class="language-plaintext highlighter-rouge">Cdf</code> objects. <code class="language-plaintext highlighter-rouge">dist.cdf()</code>, with a lowercase <code class="language-plaintext highlighter-rouge">c</code>, evaluates the normal cumulative distribution function.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="c1"># Evaluate the model CDF
+</span><span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">dist</span><span class="p">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+
+<span class="c1"># Plot the model CDF
+</span><span class="n">plt</span><span class="p">.</span><span class="n">clf</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'gray'</span><span class="p">)</span>
+
+<span class="c1"># Create and plot the Cdf of log_income
+</span><span class="n">Cdf</span><span class="p">(</span><span class="n">log_income</span><span class="p">).</span><span class="n">plot</span><span class="p">()</span>
+    
+<span class="c1"># Label the axes
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'log10 of realinc'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'CDF'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</pre></table></code></div></div><p>![[lognormal_plot.png|300]]</p><h2 id="comparing-pdfs"><span class="mr-2">Comparing PDFs</span><a href="#comparing-pdfs" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>In the previous exercise, we used CDFs to see if the distribution of income is lognormal. We can make the same comparison using a PDF and KDE. That’s what you’ll do in this exercise!</p><p>As before, the <code class="language-plaintext highlighter-rouge">norm</code> object <code class="language-plaintext highlighter-rouge">dist</code> is available in your workspace:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>from scipy.stats import norm
+dist = norm(mean, std)
+</pre></table></code></div></div><p>Just as all <code class="language-plaintext highlighter-rouge">norm</code> objects have a <code class="language-plaintext highlighter-rouge">.cdf()</code> method, they also have a <code class="language-plaintext highlighter-rouge">.pdf()</code> method.</p><p>To create a KDE plot, you can use Seaborn’s <a href="https://seaborn.pydata.org/generated/seaborn.kdeplot.html"><code class="language-plaintext highlighter-rouge">kdeplot()</code></a> function. Here, Seaborn has been imported for you as <code class="language-plaintext highlighter-rouge">sns</code>.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre><td class="rouge-code"><pre><span class="c1"># Evaluate the normal PDF
+</span><span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">dist</span><span class="p">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+
+<span class="c1"># Plot the model PDF
+</span><span class="n">plt</span><span class="p">.</span><span class="n">clf</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'gray'</span><span class="p">)</span>
+
+<span class="c1"># Plot the data KDE
+</span><span class="n">sns</span><span class="p">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">log_income</span><span class="p">)</span>
+
+<span class="c1"># Label the axes
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'log10 of realinc'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'PDF'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></table></code></div></div><p>![[KDE_plot.png|300]]</p><h1 id="relationships">Relationships</h1><p>Up until this point, you’ve only looked at one variable at a time. In this chapter, you’ll explore relationships between variables two at a time, using scatter plots and other visualizations to extract insights from a new dataset obtained from the Behavioral Risk Factor Surveillance Survey (BRFSS). You’ll also learn how to quantify those relationships using correlation and simple regression.</p><h2 id="pmf-of-age"><span class="mr-2">PMF of age</span><a href="#pmf-of-age" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Do people tend to gain weight as they get older? We can answer this question by visualizing the relationship between weight and age. But before we make a scatter plot, it is a good idea to visualize distributions one variable at a time. Here, you’ll visualize age using a bar chart first. Recall that all PMF objects have a <code class="language-plaintext highlighter-rouge">.bar()</code> method to make a bar chart.</p><p>The BRFSS dataset includes a variable, <code class="language-plaintext highlighter-rouge">'AGE'</code> (note the capitalization!), which represents each respondent’s age. To protect respondents’ privacy, ages are rounded off into 5-year bins. <code class="language-plaintext highlighter-rouge">'AGE'</code> contains the midpoint of the bins.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre><span class="c1"># Extract age
+</span><span class="n">age</span> <span class="o">=</span> <span class="n">brfss</span><span class="p">[</span><span class="s">'AGE'</span><span class="p">]</span>
+
+<span class="c1"># Plot the PMF
+</span><span class="n">pmf_age</span> <span class="o">=</span> <span class="n">Pmf</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+<span class="n">pmf_age</span><span class="p">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="c1"># Label the axes
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Age in years'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'PMF'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</pre></table></code></div></div><h2 id="scatter-plot"><span class="mr-2">Scatter plot</span><a href="#scatter-plot" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Now let’s make a scatterplot of <code class="language-plaintext highlighter-rouge">weight</code> versus <code class="language-plaintext highlighter-rouge">age</code>. To make the code run faster, I’ve selected only the first 1000 rows from the <code class="language-plaintext highlighter-rouge">brfss</code> DataFrame.</p><p><code class="language-plaintext highlighter-rouge">weight</code> and <code class="language-plaintext highlighter-rouge">age</code> have already been extracted for you. Your job is to use <code class="language-plaintext highlighter-rouge">plt.plot()</code> to make a scatter plot.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="c1"># Select the first 1000 respondents
+</span><span class="n">brfss</span> <span class="o">=</span> <span class="n">brfss</span><span class="p">[:</span><span class="mi">1000</span><span class="p">]</span>
+
+<span class="c1"># Extract age and weight
+</span><span class="n">age</span> <span class="o">=</span> <span class="n">brfss</span><span class="p">[</span><span class="s">'AGE'</span><span class="p">]</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="n">brfss</span><span class="p">[</span><span class="s">'WTKG3'</span><span class="p">]</span>
+
+<span class="c1"># Make a scatter plot
+</span><span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="s">'o'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Age in years'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Weight in kg'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></table></code></div></div><p>![[scatterplt_alpha_age.png|300]]</p><p>So far so good. By adjusting alpha we can avoid saturating the plot. Next we’ll jitter the data to break up the columns.</p><h2 id="jittering"><span class="mr-2">Jittering</span><a href="#jittering" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>In the previous exercise, the ages fall in columns because they’ve been rounded into 5-year bins. If we jitter them, the scatter plot will show the relationship more clearly. Recall how Allen jittered <code class="language-plaintext highlighter-rouge">height</code> and <code class="language-plaintext highlighter-rouge">weight</code> in the video:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>height_jitter = height + np.random.normal(0, 2, size=len(brfss))
+weight_jitter = weight + np.random.normal(0, 2, size=len(brfss))
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="c1"># Select the first 1000 respondents
+</span><span class="n">brfss</span> <span class="o">=</span> <span class="n">brfss</span><span class="p">[:</span><span class="mi">1000</span><span class="p">]</span>
+
+<span class="c1"># Add jittering to age
+</span><span class="n">age</span> <span class="o">=</span> <span class="n">brfss</span><span class="p">[</span><span class="s">'AGE'</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">brfss</span><span class="p">))</span>
+<span class="c1"># Extract weight
+</span><span class="n">weight</span> <span class="o">=</span> <span class="n">brfss</span><span class="p">[</span><span class="s">'WTKG3'</span><span class="p">]</span>
+
+<span class="c1"># Make a scatter plot
+</span><span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="s">'o'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Age in years'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Weight in kg'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></table></code></div></div><p>Excellent. By smoothing out the ages and avoiding saturation, we get the best view of the data. But in this case the nature of the relationship is still hard to see. In the next lesson, we’ll see some other ways to visualize it.</p><h2 id="height-and-weight"><span class="mr-2">Height and weight</span><a href="#height-and-weight" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Previously we looked at a scatter plot of height and weight, and saw that taller people tend to be heavier. Now let’s take a closer look using a box plot. The <code class="language-plaintext highlighter-rouge">brfss</code> DataFrame contains a variable <code class="language-plaintext highlighter-rouge">'_HTMG10'</code> that represents height in centimeters, binned into 10 cm groups. Recall how Allen created the box plot of <code class="language-plaintext highlighter-rouge">'AGE'</code> and <code class="language-plaintext highlighter-rouge">'WTKG3'</code> in the video, with the y-axis on a logarithmic scale:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>sns.boxplot(x='AGE', y='WTKG3', data=data, whis=10)
+plt.yscale('log')
+</pre></table></code></div></div><p>![[boxplot-seaborn.png|300]]</p><h1 id="multivariate-thinking">Multivariate Thinking</h1><p>Explore multivariate relationships using multiple regression to describe non-linear relationships and logistic regression to explain and predict binary variables.</p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/data-analyst/'>Data Analyst</a>, <a href='/categories/demo/'>Demo</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/data/" class="post-tag no-text-decoration" >data</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=10+Exploratory+Data+Analysis+in+Python+-+Richard%27s+Chirpy&url=https%3A%2F%2Fr1cku.github.io%2Fposts%2FExploratory-Data-Analysis-in-Python%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=10+Exploratory+Data+Analysis+in+Python+-+Richard%27s+Chirpy&u=https%3A%2F%2Fr1cku.github.io%2Fposts%2FExploratory-Data-Analysis-in-Python%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fr1cku.github.io%2Fposts%2FExploratory-Data-Analysis-in-Python%2F&text=10+Exploratory+Data+Analysis+in+Python+-+Richard%27s+Chirpy" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/data/">data</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">Contents</div><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 pl-3 pr-3 pr-xl-4"><div class="post-navigation d-flex justify-content-between"><div class="btn btn-outline-primary disabled" prompt="Older"><p>-</p></div><div class="btn btn-outline-primary disabled" prompt="Newer"><p>-</p></div></div></div></div><footer class="row pl-3 pr-3"><div class="col-12 d-flex justify-content-between align-items-center text-muted pl-0 pr-0"><div class="footer-left"><p class="mb-0"> © 2022 <a href="https://github.com/r1cku">Richard von Däniken Whale</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/data/">data</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><script src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js"></script> <script> $(function() { function updateMermaid(event) { if (event.source === window && event.data && event.data.direction === ModeToggle.ID) { const mode = event.data.message; if (typeof mermaid === "undefined") { return; } let expectedTheme = (mode === ModeToggle.DARK_MODE? "dark" : "default"); let config = { theme: expectedTheme }; /* Re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */ $(".mermaid").each(function() { let svgCode = $(this).prev().children().html(); $(this).removeAttr("data-processed"); $(this).html(svgCode); }); mermaid.initialize(config); mermaid.init(undefined, ".mermaid"); } } let initTheme = "default"; if ($("html[data-mode=dark]").length > 0 || ($("html[data-mode]").length == 0 && window.matchMedia("(prefers-color-scheme: dark)").matches ) ) { initTheme = "dark"; } let mermaidConf = { theme: initTheme /* <default|dark|forest|neutral> */ }; /* Markdown converts to HTML */ $("pre").has("code.language-mermaid").each(function() { let svgCode = $(this).children().html(); $(this).addClass("unloaded"); $(this).after(`<div class=\"mermaid\">${svgCode}</div>`); }); mermaid.initialize(mermaidConf); window.addEventListener("message", updateMermaid); }); </script><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a><div id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="false"><div class="toast-header"> <button type="button" class="ml-2 ml-auto close" data-dismiss="toast" aria-label="Close"> <span aria-hidden="true">&times;</span> </button></div><div class="toast-body text-center pt-0"><p class="pl-2 pr-2 mb-3">A new version of content is available.</p><button type="button" class="btn btn-primary" aria-label="Update"> Update </button></div></div><script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No results found.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/en.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script> /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */ MathJax = { tex: { inlineMath: [ /* start/end delimiter pairs for in-line math */ ['$','$'], ['\\(','\\)'] ], displayMath: [ /* start/end delimiter pairs for display math */ ['$$', '$$'], ['\\[', '\\]'] ] } }; </script> <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"> </script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script>

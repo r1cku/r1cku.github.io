@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://r1cku.github.io/posts/Exploratory-Data-Analysis-in-Python/</loc>
+<lastmod>2022-07-15T06:44:00+02:00</lastmod>
+</url>
+<url>
+<loc>https://r1cku.github.io/categories/</loc>
+<lastmod>2022-07-19T12:59:52+02:00</lastmod>
+</url>
+<url>
+<loc>https://r1cku.github.io/tags/</loc>
+<lastmod>2022-07-19T12:59:52+02:00</lastmod>
+</url>
+<url>
+<loc>https://r1cku.github.io/archives/</loc>
+<lastmod>2022-07-19T12:59:52+02:00</lastmod>
+</url>
+<url>
+<loc>https://r1cku.github.io/about/</loc>
+<lastmod>2022-07-19T12:59:52+02:00</lastmod>
+</url>
+<url>
+<loc>https://r1cku.github.io/</loc>
+</url>
+<url>
+<loc>https://r1cku.github.io/tags/data/</loc>
+</url>
+<url>
+<loc>https://r1cku.github.io/categories/data-analyst/</loc>
+</url>
+<url>
+<loc>https://r1cku.github.io/categories/demo/</loc>
+</url>
+</urlset>
