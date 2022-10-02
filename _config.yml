@@ -23,10 +23,10 @@ timezone: Europe/Zurich
 
 title: Richard's Analytics # the main title
 
-tagline: A collection of notes, ideas and tutorials around financial analytics  # it will display as the sub-title
+tagline: A collection of notes, ideas and tutorials around financial analysis  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  A collection of notes, ideas and tutorials around financial analytics
+  A collection of notes, ideas and tutorials around financial analysis
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://r1cku.github.io'
@@ -35,7 +35,7 @@ github:
   username: r1cku             # change to your github username
 
 twitter:
-  username: RichardWhale8            # change to your twitter username
+  username: _r1cku_            # change to your twitter username
 
 social:
   # Change to your full name.
