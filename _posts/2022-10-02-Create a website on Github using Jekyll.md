@@ -13,7 +13,7 @@ img_path: /commons/images
 # Create a website like this one on Github using Jekyll!
 As this website is fairly new, it would be appropriate to share how I created this website using readily available and free services.
 
-![](/chirpy.jpeg)
+
 
 ## Quick Start
 Firstly, [Jekyll Docs](https://jekyllrb.com/docs/installation/) provides instructions to install `Ruby`, `RubyGems`, `Jekyll`, and `Bundler`.  You will also need to install [Git](https://git-scm.com/)
@@ -27,7 +27,9 @@ Some themes can be found at for example:
 -    [jekyllthemes.org](http://jekyllthemes.org/)
 -    [jekyllthemes.io](https://jekyllthemes.io/)
 
-The theme that I have chosen and quite like is the [Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy) theme. 
+The theme that I have chosen and quite like is the [Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy) theme.
+
+![](/chirpy.jpeg){: width="100" height="100" }
 
 Create a new repository from the template you choose and name it `<GH_USERNAME>.github.io`, where `GH_USERNAME` represents your GitHub username.
 
@@ -53,6 +55,9 @@ This will provide a local version of your website which can be viewed at [http:/
 #### require: cannot load such file -- webrick
 I came across this issue which can be resolved by adding webrick.
 Dealing with: `require': **cannot load such file -- webrick**
+
 ```
 bundle add webrick ui
+```
+
 
