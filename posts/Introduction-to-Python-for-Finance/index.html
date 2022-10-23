@@ -1,0 +1,581 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="Chapter 01 - Introduction to Python for Finance" /><meta property="og:locale" content="en" /><meta name="description" content="Introduction to Python for Finance Dive into data science using Python and learn how to effectively analyze and visualize your data. No coding experience or skills needed." /><meta property="og:description" content="Introduction to Python for Finance Dive into data science using Python and learn how to effectively analyze and visualize your data. No coding experience or skills needed." /><link rel="canonical" href="https://r1cku.github.io/posts/Introduction-to-Python-for-Finance/" /><meta property="og:url" content="https://r1cku.github.io/posts/Introduction-to-Python-for-Finance/" /><meta property="og:site_name" content="Richard’s Analysis" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-10-15T19:00:00+02:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Chapter 01 - Introduction to Python for Finance" /><meta name="twitter:site" content="@_r1cku_" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-15T19:00:00+02:00","datePublished":"2022-10-15T19:00:00+02:00","description":"Introduction to Python for Finance Dive into data science using Python and learn how to effectively analyze and visualize your data. No coding experience or skills needed.","headline":"Chapter 01 - Introduction to Python for Finance","mainEntityOfPage":{"@type":"WebPage","@id":"https://r1cku.github.io/posts/Introduction-to-Python-for-Finance/"},"url":"https://r1cku.github.io/posts/Introduction-to-Python-for-Finance/"}</script><title>Chapter 01 - Introduction to Python for Finance | Richard's Analysis</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="Richard's Analysis"><meta name="application-name" content="Richard's Analysis"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get MODE_ATTR() { return "data-mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } static get ID() { return "mode-toggle"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } let self = this; /* always follow the system prefers */ this.sysDarkPrefers.addEventListener("change", () => { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.notify(); }); } /* constructor() */ get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; } get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } setDark() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_ATTR); sessionStorage.removeItem(ModeToggle.MODE_KEY); } /* Notify another plugins that the theme mode has changed */ notify() { window.postMessage({ direction: ModeToggle.ID, message: this.modeStatus }, "*"); } } /* ModeToggle */ const toggle = new ModeToggle(); function flipMode() { if (toggle.hasMode) { if (toggle.isSysDarkPrefer) { if (toggle.isLightMode) { toggle.clearMode(); } else { toggle.setLight(); } } else { if (toggle.isDarkMode) { toggle.clearMode(); } else { toggle.setDark(); } } } else { if (toggle.isSysDarkPrefer) { toggle.setLight(); } else { toggle.setDark(); } } toggle.notify(); } /* flipMode() */ </script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> <img src="/commons/avatar1.jpeg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">Richard's Analysis</a></div><div class="site-subtitle font-italic">Sharing notes, ideas and tutorials around financial analysis</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <button class="mode-toggle btn" aria-label="Switch Mode"> <i class="fas fa-adjust"></i> </button> <span class="icon-border"></span> <a href="https://github.com/r1cku" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/_r1cku_" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['whalerichard','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper"><div id="topbar" class="container d-flex align-items-center justify-content-between h-100 pl-3 pr-3 pl-md-4 pr-md-4"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>Chapter 01 - Introduction to Python for Finance</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper" class="d-flex justify-content-center"><div id="main" class="container pl-xl-4 pr-xl-4"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-9 pr-xl-4"><div class="post pl-1 pr-1 pl-md-2 pr-md-2"><h1 data-toc-skip>Chapter 01 - Introduction to Python for Finance</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1665853200" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Oct 15, 2022 </em> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://twitter.com/RichardWhale8">Richard von Däniken Whale</a> </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2149 words"> <em>11 min</em> read</span></div></div></div><div class="post-content"><h1 id="introduction-to-python-for-finance">Introduction to Python for Finance</h1><p>Dive into data science using Python and learn how to effectively analyze and visualize your data. No coding experience or skills needed.</p><h2 id="course-description"><span class="mr-2">Course Description</span><a href="#course-description" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Begin your journey into Data Science! Even if you’ve never written a line of code in your life, you’ll be able to follow this course and witness the power of Python to perform Data Science. You’ll use data to solve the mystery of Bayes, the kidnapped Golden Retriever, and along the way you’ll become familiar with basic Python syntax and popular Data Science modules like Matplotlib (for charts and graphs) and pandas (for tabular data).</p><h2 id="welcome-to-python"><span class="mr-2">Welcome to Python</span><a href="#welcome-to-python" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Variables can be used to store information and can be used to complete functions</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="n">revenue_1</span> <span class="o">=</span> <span class="mf">229.23</span>
+<span class="n">revenue_2</span> <span class="o">=</span> <span class="mf">177.86</span>
+<span class="n">revenue_3</span> <span class="o">=</span> <span class="mf">89.95</span>
+<span class="n">total</span> <span class="o">=</span> <span class="n">revenue_1</span><span class="o">+</span><span class="n">revenue_2</span><span class="o">+</span><span class="n">revenue_3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+</pre></table></code></div></div><p>Find the average revenue of the three revenues above!</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="n">average</span> <span class="o">=</span> <span class="n">total</span><span class="o">/</span><span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">average</span><span class="p">)</span>
+</pre></table></code></div></div><h2 id="variable-data-types"><span class="mr-2">Variable Data Types</span><a href="#variable-data-types" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>There are four data type in Python:</p><ul><li><em>Strings</em> (str)- ‘hello world’<li>Integers (int)- 40<li>Floats (float)- 3.1417<li>Booleens (bool)- True or False</ul><h2 id="boolean-data-types"><span class="mr-2">Boolean Data Types</span><a href="#boolean-data-types" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Vairables in Python may consist of three data types.</p><p><strong>Strings</strong> require ‘_ _ _’ to enclose the variable</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="n">company_1</span> <span class="o">=</span> <span class="s">'Apple'</span>
+<span class="k">print</span><span class="p">(</span><span class="n">company_1</span><span class="p">)</span>
+</pre></table></code></div></div><p><strong>Intergers</strong> do not require anything additional</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="n">year_1</span> <span class="o">=</span> <span class="mi">2017</span>
+<span class="k">print</span><span class="p">(</span><span class="n">year_1</span><span class="p">)</span>
+</pre></table></code></div></div><p><strong>Floats</strong> also do not require any additional information</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="n">revenue_1</span> <span class="o">=</span> <span class="mf">229.23</span>
+<span class="k">print</span><span class="p">(</span><span class="n">revenue_1</span><span class="p">)</span>
+</pre></table></code></div></div><h3 id="determining-types"><span class="mr-2">Determining Types</span><a href="#determining-types" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Python has a built-in command type() that can determine the type of a variable or literal value.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">company_1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">year_1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">revenue_1</span><span class="p">))</span>
+</pre></table></code></div></div><h3 id="booleans-in-python"><span class="mr-2">Booleans in Python</span><a href="#booleans-in-python" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Booleans are values that are either True or False. Boolean comparisons include:</p><p>operators descriptions:</p><p>\ &gt; greater than</p><p>\ &gt;= greater than or equal</p><p>&lt; less than</p><p>&lt;= less than or equal</p><p>== equal</p><p>!= does not equal</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="c1"># Test equality
+</span><span class="n">test_company</span> <span class="o">=</span> <span class="s">'apple'</span>
+<span class="k">print</span><span class="p">(</span><span class="n">company_1</span> <span class="o">==</span> <span class="n">test_company</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="c1"># Compare revenue_1 and revenue_2
+</span><span class="k">print</span><span class="p">(</span><span class="n">revenue_1</span> <span class="o">&gt;</span> <span class="n">revenue_2</span><span class="p">)</span>
+</pre></table></code></div></div><h3 id="combining-data-types"><span class="mr-2">Combining data types</span><a href="#combining-data-types" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><strong>Strings</strong> and <strong>Floats</strong> cannot be mathematically combined. To convert a variable x to an integer, you can use the command int(x) To convert a variable y to a string, you can use the command str(y)</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="c1"># Update data types
+</span><span class="n">year_1_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">year_1</span><span class="p">)</span>
+<span class="n">revenue_1_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">revenue_1</span><span class="p">)</span>
+
+<span class="c1"># Create a complete sentence combining only the string data types
+</span><span class="n">sentence</span> <span class="o">=</span> <span class="s">'The revenue of '</span> <span class="o">+</span> <span class="n">company_1</span> <span class="o">+</span> <span class="s">' in '</span> <span class="o">+</span> <span class="n">year_1_str</span> <span class="o">+</span> <span class="s">' was $'</span> <span class="o">+</span> <span class="n">revenue_1_str</span> <span class="o">+</span> <span class="s">' billion.'</span>
+
+<span class="c1"># Print sentence
+</span><span class="k">print</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+</pre></table></code></div></div><h2 id="lists"><span class="mr-2">Lists</span><a href="#lists" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">months</span><span class="o">=</span><span class="p">[</span><span class="s">'Jan'</span><span class="p">,</span><span class="s">'Feb'</span><span class="p">,</span><span class="s">'Mar'</span><span class="p">,</span><span class="s">'Apr'</span><span class="p">,</span><span class="s">'May'</span><span class="p">,</span><span class="s">'June'</span><span class="p">]</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">months</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">months</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">months</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">months</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></table></code></div></div><h3 id="slicing"><span class="mr-2">Slicing</span><a href="#slicing" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Slicing takes a specified series of contents out of a list. Remember, this syntax indicates subsetting all elements from the start and up to but not including the end element.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">months</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">months</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></table></code></div></div><h4 id="extended-slicing-with-lists"><span class="mr-2">Extended slicing with lists</span><a href="#extended-slicing-with-lists" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">months</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">months</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></table></code></div></div><h4 id="slicing-with-steps"><span class="mr-2">Slicing with steps</span><a href="#slicing-with-steps" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><p>myslist[startAt : endBefore : step] default step size is 1</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">months</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">months</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></table></code></div></div><h3 id="exercise"><span class="mr-2">Exercise</span><a href="#exercise" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="c1"># Create and print list names
+</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Apple Inc"</span><span class="p">,</span><span class="s">"Coca-Cola"</span><span class="p">,</span><span class="s">"Walmart"</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+
+<span class="c1"># Create and print list prices
+</span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">159.54</span><span class="p">,</span><span class="mf">37.13</span><span class="p">,</span><span class="mf">71.17</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="c1"># Print the first item in names
+</span><span class="k">print</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Print the second item in names
+</span><span class="k">print</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Print the last element in prices
+</span><span class="k">print</span><span class="p">(</span><span class="n">prices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="c1"># names
+</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Apple Inc'</span><span class="p">,</span> <span class="s">'Coca-Cola'</span><span class="p">,</span> <span class="s">'Walmart'</span><span class="p">]</span>
+
+<span class="c1"># Use slicing on list names
+</span><span class="n">names_subset</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">names_subset</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="c1"># prices
+</span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">159.54</span><span class="p">,</span> <span class="mf">37.13</span><span class="p">,</span> <span class="mf">71.17</span><span class="p">]</span>
+
+<span class="c1"># Use extended slicing on the list prices
+</span><span class="n">prices_subset</span> <span class="o">=</span> <span class="n">prices</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prices_subset</span><span class="p">)</span>
+</pre></table></code></div></div><h4 id="list-inside-of-a-list"><span class="mr-2">List Inside of a List</span><a href="#list-inside-of-a-list" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="c1"># Create and print the nested list stocks
+</span><span class="n">stocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">names</span><span class="p">,</span><span class="n">prices</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">stocks</span><span class="p">)</span>
+
+<span class="c1"># Use list indexing to obtain the list of prices
+</span><span class="k">print</span><span class="p">(</span><span class="n">stocks</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></table></code></div></div><h4 id="subset-a-nested-list"><span class="mr-2">Subset a nested list</span><a href="#subset-a-nested-list" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="n">stocks</span> <span class="o">=</span> <span class="p">[[</span><span class="s">'Apple Inc'</span><span class="p">,</span> <span class="s">'Coca-Cola'</span><span class="p">,</span> <span class="s">'Walmart'</span><span class="p">],</span> <span class="p">[</span><span class="mf">159.54</span><span class="p">,</span> <span class="mf">37.13</span><span class="p">,</span> <span class="mf">71.17</span><span class="p">]]</span>
+
+<span class="c1"># Use indexing to obtain company name Coca-Cola
+</span><span class="k">print</span><span class="p">(</span><span class="n">stocks</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Use indexing to obtain 71.17
+</span><span class="k">print</span><span class="p">(</span><span class="n">stocks</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+</pre></table></code></div></div><h3 id="methods-and-functions"><span class="mr-2">Methods and Functions</span><a href="#methods-and-functions" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Methods are a subset of functions. ie all methods are functions but not all functions are methods.</p><p>Functions take objects as inputs are are “passed” an object. e.g type(prices), min(prices), max(prices)</p><p>Methods act on objects. e.g list.sort(), list.append(), list.extend(), list.index()</p><h3 id="exercises"><span class="mr-2">Exercises</span><a href="#exercises" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="c1"># Print the sorted list prices
+</span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">159.54</span><span class="p">,</span> <span class="mf">37.13</span><span class="p">,</span> <span class="mf">71.17</span><span class="p">]</span>
+<span class="n">prices</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="c1"># Find the maximum price in the list price
+</span><span class="n">price_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">price_max</span><span class="p">)</span>
+</pre></table></code></div></div><p>.append() increases the lenght of a list by one</p><p>.extend() increase the length of the list by the number of elelemtbst that are provided to the methods</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="c1"># Append a name to the list names
+</span><span class="n">names</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">'Amazon.com'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+
+<span class="c1"># Extend list names
+</span><span class="n">more_elements</span> <span class="o">=</span> <span class="p">[</span><span class="s">'DowDuPont'</span><span class="p">,</span> <span class="s">'Alphabet Inc'</span><span class="p">]</span>
+<span class="n">names</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">more_elements</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+</pre></table></code></div></div><p>.index() return the index of the element specified</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">159.54</span><span class="p">,</span> <span class="mf">37.13</span><span class="p">,</span> <span class="mf">71.17</span><span class="p">,</span> <span class="mf">1705.54</span><span class="p">,</span> <span class="mf">66.43</span><span class="p">,</span> <span class="mf">1132.34</span><span class="p">]</span>
+
+<span class="c1"># Do not modify this
+</span><span class="n">max_price</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">max_price</span><span class="p">)</span>
+
+<span class="c1"># Identify index of max price
+</span><span class="n">max_index</span> <span class="o">=</span> <span class="n">prices</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">max_price</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">max_index</span><span class="p">)</span>
+
+<span class="c1"># Identify the name of the company with max price
+</span><span class="n">max_stock_name</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="n">max_index</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">max_stock_name</span><span class="p">)</span>
+
+<span class="c1"># Fill in the blanks 
+</span><span class="k">print</span><span class="p">(</span><span class="s">'The largest stock price is associated with '</span> <span class="o">+</span> <span class="n">max_stock_name</span> <span class="o">+</span> <span class="s">' and is $'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_price</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span><span class="p">)</span>
+</pre></table></code></div></div><h2 id="arrays"><span class="mr-2">Arrays</span><a href="#arrays" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>pip3 install package_name_here</p><p>import package_name_here</p><h3 id="create-an-array"><span class="mr-2">Create an array</span><a href="#create-an-array" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>You can use the NumPy package to create arrays. NumPy arrays are optimized for numerical analyses and contain only a single data type. To convert a list to an array, you can use the array() function from NumPy.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre><span class="c1"># Import numpy as np
+</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="c1"># Lists
+</span><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">170.12</span><span class="p">,</span> <span class="mf">93.29</span><span class="p">,</span> <span class="mf">55.28</span><span class="p">,</span> <span class="mf">145.30</span><span class="p">,</span> <span class="mf">171.81</span><span class="p">,</span> <span class="mf">59.50</span><span class="p">,</span> <span class="mf">100.50</span><span class="p">]</span>
+<span class="n">earnings</span> <span class="o">=</span> <span class="p">[</span><span class="mf">9.2</span><span class="p">,</span> <span class="mf">5.31</span><span class="p">,</span> <span class="mf">2.41</span><span class="p">,</span> <span class="mf">5.91</span><span class="p">,</span> <span class="mf">15.42</span><span class="p">,</span> <span class="mf">2.51</span><span class="p">,</span> <span class="mf">6.79</span><span class="p">]</span>
+
+<span class="c1"># NumPy arrays
+</span><span class="n">prices_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+<span class="n">earnings_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">earnings</span><span class="p">)</span>
+
+<span class="c1"># Print the arrays
+</span><span class="k">print</span><span class="p">(</span><span class="n">prices_array</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">earnings_array</span><span class="p">)</span>
+</pre></table></code></div></div><h3 id="elementwise-operations-on-arrays"><span class="mr-2">Elementwise operations on arrays</span><a href="#elementwise-operations-on-arrays" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Arrays allow for efficient numerical manipulation of its elements. Let’s explore element-wise mathematical operations by calculating price to earnings ratio using two arrays, <strong>prices_array and earnings_array</strong> from the previous exercise.</p><p>This price to earnings ratio, or PE ratio, is a financial indicator of the dollar amount an investor can expect to invest in a company in order to receive one dollar of that company’s earnings.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="c1"># Import numpy as np
+</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="c1"># Create PE ratio array
+</span><span class="n">pe_array</span> <span class="o">=</span> <span class="n">prices_array</span><span class="o">/</span><span class="n">earnings_array</span>
+
+<span class="c1"># Print pe_array
+</span><span class="k">print</span><span class="p">(</span><span class="n">pe_array</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="c1"># Subset the first three elements
+</span><span class="n">prices_subset_1</span> <span class="o">=</span> <span class="n">prices_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prices_subset_1</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="c1"># Subset last three elements 
+</span><span class="n">prices_subset_2</span> <span class="o">=</span> <span class="n">prices_array</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prices_subset_2</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="c1"># Subset every third element
+</span><span class="n">prices_subset_3</span> <span class="o">=</span> <span class="n">prices_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prices_subset_3</span><span class="p">)</span>
+</pre></table></code></div></div><h3 id="2d-arrays-and-functions"><span class="mr-2">2D arrays and functions</span><a href="#2d-arrays-and-functions" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Arrays in numpy can also be 2 dimensional.</p><p>array=np.array([months,prices])</p><p>.shape gives you the dimensions of an array</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>e.g print(cpi_array.shape)
+</pre></table></code></div></div><p>(2,3) → 2 rows and 3 colums</p><p>.size gives you total number of elements in the array</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>e.g print(cpi_array.size)
+</pre></table></code></div></div><p>6</p><p>np.mean calculates the mean of an input</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>print(np.mean(prices_array))
+</pre></table></code></div></div><p>np.std() calculates the standard deviation of an input</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>print(np.std(prices_array))
+</pre></table></code></div></div><p>numpy.arange() creates an array with start, end, step (default step size = 1)</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>months = np.arange(1,13)
+
+print(months)
+</pre></table></code></div></div><p>[1 2 3 4 5 6 7 8 9 10 11 12]</p><p>numpy.transpose() switches rows and columns of a numpy array (2,3) → (3,2)</p><h3 id="array-indexing-for-2d-arrays"><span class="mr-2">Array indexing for 2D arrays</span><a href="#array-indexing-for-2d-arrays" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>row index 1, column index 2 array[1,2]</p><p>all row slice, thrid column print(array[:,2])</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="c1"># Create a 2D array of prices and earnings
+</span><span class="n">stock_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">prices</span><span class="p">,</span><span class="n">earnings</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">stock_array</span><span class="p">)</span>
+
+<span class="c1"># Print the shape of stock_array
+</span><span class="k">print</span><span class="p">(</span><span class="n">stock_array</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Print the size of stock_array
+</span><span class="k">print</span><span class="p">(</span><span class="n">stock_array</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="c1"># Transpose stock_array n.b numpy is set as np
+</span><span class="n">stock_array_transposed</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">stock_array</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">stock_array_transposed</span><span class="p">)</span>
+
+<span class="c1"># Print the shape of stock_array
+</span><span class="k">print</span><span class="p">(</span><span class="n">stock_array_transposed</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Print the size of stock_array
+</span><span class="k">print</span><span class="p">(</span><span class="n">stock_array_transposed</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
+</pre></table></code></div></div><h3 id="subsetting-2d-arrays"><span class="mr-2">Subsetting 2D arrays</span><a href="#subsetting-2d-arrays" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Subsetting 2D arrays is similar to subsetting nested lists. In a 2D array, the indexing or slicing must be specific to the dimension of the array:</p><p>array[row_index, column_index]</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="c1"># Extract the first column from stock_array_transposed and assign it to prices.
+# Subset prices from stock_array_transposed
+</span><span class="n">prices</span> <span class="o">=</span> <span class="n">stock_array_transposed</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="c1"># Extract the second column from stock_array_transposed and assign it to earnings.
+# Subset earnings from stock_array_transposed
+</span><span class="n">earnings</span> <span class="o">=</span> <span class="n">stock_array_transposed</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">earnings</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="c1"># Subset the price and earning of the first company (row 0) from stock_array_transposed and assign it to company_1.
+# Subset the price and earning for first company
+</span><span class="n">company_1</span> <span class="o">=</span> <span class="n">stock_array_transposed</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">company_1</span><span class="p">)</span>
+</pre></table></code></div></div><h3 id="calculating-array-stats"><span class="mr-2">Calculating Array Stats</span><a href="#calculating-array-stats" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Not only can you perform elementwise calculations on NumPy arrays, you can also calculate summary stats such as mean and standard deviation of arrays using functions from NumPy.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">170.12</span><span class="p">,</span> <span class="mf">93.29</span><span class="p">,</span> <span class="mf">55.28</span><span class="p">,</span> <span class="mf">145.30</span><span class="p">,</span> <span class="mf">171.81</span><span class="p">,</span> <span class="mf">59.50</span><span class="p">,</span> <span class="mf">100.50</span><span class="p">]</span>
+
+<span class="c1"># Calculate the mean 
+</span><span class="n">prices_mean</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prices_mean</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="c1"># Calculate the standard deviation 
+</span><span class="n">prices_std</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prices_std</span><span class="p">)</span>
+</pre></table></code></div></div><h3 id="generating-a-sequence-of-numbers"><span class="mr-2">Generating a sequence of numbers</span><a href="#generating-a-sequence-of-numbers" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>You may want to create an array of a range of numbers (e.g., 1 to 10) without having to type in every single number. The NumPy function arange() is an efficient way to create numeric arrays of a range of numbers. The arguments for arange() include the start, stop, and step interval as shown below:</p><p>np.arange(start, stop, step)</p><p>(numpy is imported as np)</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="c1"># Create an array company_ids containing the numbers 1 through 7 (inclusive).
+# Create and print company IDs
+</span><span class="n">company_ids</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">company_ids</span><span class="p">)</span>
+
+<span class="c1"># Create an array company_ids_odd containing only the odd numbers from 1 through 7 (inclusive).
+# Use array slicing to select specific company IDs
+</span><span class="n">company_ids_odd</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">company_ids_odd</span><span class="p">)</span>
+</pre></table></code></div></div><h3 id="using-arrays-for-analysis"><span class="mr-2">Using arrays for analysis</span><a href="#using-arrays-for-analysis" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Numpy arrays can also be indexed with other arrays.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="n">months_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="s">'Jan'</span><span class="p">,</span><span class="s">'Feb'</span><span class="p">,</span><span class="s">'Mar'</span><span class="p">,</span><span class="s">'Apr'</span><span class="p">,</span><span class="s">'May'</span><span class="p">,</span> <span class="s">'Jun'</span><span class="p">])</span>
+<span class="n">indexing_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="n">months_subset</span> <span class="o">=</span> <span class="n">months_array</span><span class="p">[</span><span class="n">indexing_array</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">months_subset</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="n">negative_index</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">months_array</span><span class="p">[</span><span class="n">negative_index</span><span class="p">])</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="n">boolean_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="bp">False</span><span class="p">,</span><span class="bp">False</span><span class="p">,</span><span class="bp">False</span><span class="p">])</span>
+<span class="k">print</span><span class="p">((</span><span class="n">months_array</span><span class="p">[</span><span class="n">boolean_array</span><span class="p">]))</span>
+</pre></table></code></div></div><h3 id="more-on-boolean-arrays"><span class="mr-2">More on Boolean arrays</span><a href="#more-on-boolean-arrays" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="n">prices_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mf">238.11</span><span class="p">,</span><span class="mf">237.81</span><span class="p">,</span><span class="mf">238.91</span><span class="p">])</span>
+<span class="c1"># Create a Boolean Array
+</span><span class="n">boolean_array</span> <span class="o">=</span> <span class="p">(</span><span class="n">prices_array</span> <span class="o">&gt;</span> <span class="mi">238</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">boolean_array</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">prices_array</span><span class="p">[</span><span class="n">boolean_array</span><span class="p">])</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="k">print</span><span class="p">(</span><span class="n">prices_array</span><span class="p">)</span>
+
+<span class="c1"># Find the mean
+</span><span class="n">price_mean</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices_array</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">price_mean</span><span class="p">)</span>
+
+<span class="c1"># Create boolean array
+</span><span class="n">boolean_array</span> <span class="o">=</span> <span class="p">(</span><span class="n">prices_array</span> <span class="o">&gt;</span> <span class="n">price_mean</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">boolean_array</span><span class="p">)</span>
+
+<span class="c1"># Select prices that are greater than average
+</span><span class="n">above_avg</span> <span class="o">=</span> <span class="p">(</span><span class="n">prices_array</span><span class="p">[</span><span class="n">boolean_array</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">above_avg</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Apple Inc'</span><span class="p">,</span><span class="s">'Abbvie Inc'</span><span class="p">,</span><span class="s">'Abbott Laboratories'</span><span class="p">,</span><span class="s">'Accenture Technologies'</span><span class="p">,</span><span class="s">'Allergan Plc'</span><span class="p">]</span>
+<span class="n">sector</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Information Technology'</span><span class="p">,</span><span class="s">'Health Care'</span><span class="p">,</span><span class="s">'Health Care'</span><span class="p">,</span><span class="s">'Information Technologies'</span><span class="p">,</span><span class="s">'Health Care'</span><span class="p">]</span>
+
+<span class="n">names_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+<span class="n">sector_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">sector</span><span class="p">)</span>
+
+<span class="c1"># Find elements in sectors that are equivalent to 'Health Care' and assign the result to boolean_array.
+# Create boolean array
+</span><span class="n">boolean_array</span> <span class="o">=</span> <span class="p">(</span><span class="n">sector_array</span> <span class="o">==</span> <span class="s">'Health Care'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">boolean_array</span><span class="p">)</span>
+
+<span class="c1"># Subset names using boolean_array and assign the result to health_care.
+# Print only health care companies
+</span><span class="n">health_care</span> <span class="o">=</span> <span class="p">(</span><span class="n">names_array</span><span class="p">[</span><span class="n">boolean_array</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">health_care</span><span class="p">)</span>
+</pre></table></code></div></div><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>[False  True  True False  True]
+['Abbvie Inc' 'Abbott Laboratories' 'Allergan Plc']
+</pre></table></code></div></div><h2 id="visualisations-in-python"><span class="mr-2">Visualisations in Python</span><a href="#visualisations-in-python" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>plt.plot() takes arguements that describe the data to be plotted</p><p>plt.show() displays plot to screen</p><p>plt.xlabel()</p><p>plt.ylabel()</p><p>plt.title()</p><p>plt.scatter()</p><h3 id="importing-matplotlib-and-pyplot"><span class="mr-2">Importing matplotlib and pyplot</span><a href="#importing-matplotlib-and-pyplot" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Pyplot is a collection of functions in the popular visualization package Matplotlib. Its functions manipulate elements of a figure, such as creating a figure, creating a plotting area, plotting lines, adding plot labels, etc.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="n">days</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">...</span> <span class="p">,</span> <span class="mi">2337</span><span class="p">,</span> <span class="mi">2338</span><span class="p">]</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">78.72</span><span class="p">,</span> <span class="mf">78.31</span><span class="p">,</span> <span class="mf">75.98</span><span class="p">,</span> <span class="p">...</span> <span class="p">,</span> <span class="mf">1103.68</span><span class="p">,</span> <span class="mf">1094.22</span><span class="p">]</span>
+
+<span class="c1"># Import matplotlib.pyplot with the alias plt
+</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Plot the price of stock over time
+</span><span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="n">prices</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"red"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">"--"</span><span class="p">)</span>
+
+<span class="c1"># Display the plot
+</span><span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></table></code></div></div><h3 id="adding-axis-labels-and-titles"><span class="mr-2">Adding axis labels and titles</span><a href="#adding-axis-labels-and-titles" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="c1"># Plot the price of stock over time
+</span><span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="n">prices</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"red"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">"--"</span><span class="p">)</span>
+
+<span class="c1"># Add x and y labels
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Days'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Prices, $'</span><span class="p">)</span>
+
+<span class="c1"># Add plot title
+</span><span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Company Stock Prices Over Time'</span><span class="p">)</span>
+
+<span class="c1"># Display the plot
+</span><span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</pre></table></code></div></div><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="n">days</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">...</span> <span class="p">,</span> <span class="mi">1259</span><span class="p">,</span> <span class="mi">1260</span><span class="p">]</span>
+<span class="n">prices1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">78.72</span><span class="p">,</span> <span class="mf">78.31</span><span class="p">,</span> <span class="p">...</span> <span class="mf">298.94</span><span class="p">,</span> <span class="mf">303.4</span><span class="p">]</span>
+<span class="n">prices2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">62.957142000000005</span><span class="p">,</span> <span class="mf">62.185715</span><span class="p">,</span> <span class="mf">62.971428</span><span class="p">,</span> <span class="p">...,</span> <span class="mf">192.449997</span><span class="p">,</span> <span class="mf">193.059998</span><span class="p">]</span>
+
+<span class="c1"># Plot the second line of green colour
+</span><span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="n">prices1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'red'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="n">prices2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'green'</span><span class="p">)</span>
+
+<span class="c1"># Add labels
+</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Days'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Prices, $'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Stock Prices Over Time'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</pre></table></code></div></div><h3 id="scatterplots"><span class="mr-2">Scatterplots</span><a href="#scatterplots" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>The pyplot module can also be used to make other types of plots, like scatterplots.</p><div class="language-python highlighter-rouge"><div class="code-header"> <span data-label-text="Python"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="n">days</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">...,</span> <span class="mi">2337</span><span class="p">,</span> <span class="mi">2338</span><span class="p">]</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">78.72</span><span class="p">,</span> <span class="mf">78.31</span><span class="p">,</span> <span class="mf">75.98</span><span class="p">,</span> <span class="p">...,</span> <span class="mf">1103.68</span><span class="p">,</span> <span class="mf">1094.22</span><span class="p">]</span>
+
+<span class="c1"># Plot price as a function of time
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="n">prices</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'green'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Show plot
+</span><span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</pre></table></code></div></div></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/python/'>Python</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/notes/" class="post-tag no-text-decoration" >notes</a> <a href="/tags/python/" class="post-tag no-text-decoration" >python</a> <a href="/tags/datacamp/" class="post-tag no-text-decoration" >datacamp</a> <a href="/tags/data/" class="post-tag no-text-decoration" >data</a> <a href="/tags/analyst/" class="post-tag no-text-decoration" >analyst</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=Chapter+01+-+Introduction+to+Python+for+Finance+-+Richard%27s+Analysis&url=https%3A%2F%2Fr1cku.github.io%2Fposts%2FIntroduction-to-Python-for-Finance%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=Chapter+01+-+Introduction+to+Python+for+Finance+-+Richard%27s+Analysis&u=https%3A%2F%2Fr1cku.github.io%2Fposts%2FIntroduction-to-Python-for-Finance%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fr1cku.github.io%2Fposts%2FIntroduction-to-Python-for-Finance%2F&text=Chapter+01+-+Introduction+to+Python+for+Finance+-+Richard%27s+Analysis" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/Create-a-website-on-Github-using-Jekyll/">Create a website on Github using Jekyll</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/analyst/">analyst</a> <a class="post-tag" href="/tags/data/">data</a> <a class="post-tag" href="/tags/datacamp/">datacamp</a> <a class="post-tag" href="/tags/notes/">notes</a> <a class="post-tag" href="/tags/python/">python</a> <a class="post-tag" href="/tags/tutorial/">tutorial</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">Contents</div><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 pl-3 pr-3 pr-xl-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/Intermediate-Python/"><div class="card-body"> <em class="small" data-ts="1665853200" data-df="ll" > Oct 15, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Chapter 02 - Intermediate Python</h3><div class="text-muted small"><p> Intermediate Python Level up your data science skills by creating visualizations using Matplotlib and manipulating DataFrames with pandas. Course Description Learning Python is crucial for any asp...</p></div></div></a></div><div class="card"> <a href="/posts/Create-a-website-on-Github-using-Jekyll/"><div class="card-body"> <em class="small" data-ts="1664723190" data-df="ll" > Oct 2, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Create a website on Github using Jekyll</h3><div class="text-muted small"><p> Create a website like this one on Github using Jekyll! As this website is fairly new, it would be appropriate to share how I created this website using readily available and free services. Quick S...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/Intermediate-Python/" class="btn btn-outline-primary" prompt="Older"><p>Chapter 02 - Intermediate Python</p></a><div class="btn btn-outline-primary disabled" prompt="Newer"><p>-</p></div></div></div></div><footer class="row pl-3 pr-3"><div class="col-12 d-flex justify-content-between align-items-center text-muted pl-0 pr-0"><div class="footer-left"><p class="mb-0"> © 2022 <a href="https://twitter.com/RichardWhale8">Richard von Däniken Whale</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/analyst/">analyst</a> <a class="post-tag" href="/tags/data/">data</a> <a class="post-tag" href="/tags/datacamp/">datacamp</a> <a class="post-tag" href="/tags/notes/">notes</a> <a class="post-tag" href="/tags/python/">python</a> <a class="post-tag" href="/tags/tutorial/">tutorial</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a><div id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="false"><div class="toast-header"> <button type="button" class="ml-2 ml-auto close" data-dismiss="toast" aria-label="Close"> <span aria-hidden="true">&times;</span> </button></div><div class="toast-body text-center pt-0"><p class="pl-2 pr-2 mb-3">A new version of content is available.</p><button type="button" class="btn btn-primary" aria-label="Update"> Update </button></div></div><script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No results found.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/en.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script>
